@@ -5,15 +5,39 @@ namespace variable
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Enter the first number ");
-            double num1 = double.Parse(Console.ReadLine());
+            double num1, num2;
+            string operation;
+            while(true)
+            {
+                System.Console.WriteLine("Enter the first number: ");
+                if(double.TryParse(Console.ReadLine(), out num1))
+                {
+                    break;
+                }
+                System.Console.WriteLine("Invalid input, Enter a number");
+            }
+            
 
-            System.Console.WriteLine("Enter the Second number ");
-            double num2 = double.Parse(Console.ReadLine());
-
-            Console.WriteLine("Enter a maths operation  (+, -, *, /): ");
-            string operation = Console.ReadLine();
-
+            while(true)
+            {
+                System.Console.WriteLine("Enter the second number: ");
+                if(double.TryParse(Console.ReadLine(), out num2))
+                {
+                    break;
+                }
+                System.Console.WriteLine("Invalid input, Enter a number");
+            }
+            while(true)
+            {
+                System.Console.WriteLine("Enter a maths operation (+, -, *, /)");
+                operation = Console.ReadLine();
+                if(operation == "/" || operation == "-" || operation == "+" || operation == "*")
+                {
+                    break;
+                }
+                System.Console.WriteLine("Invalid input, enter a proper maths operation");
+            }
+            
             double result = 0;
 
             switch(operation)
@@ -28,6 +52,11 @@ namespace variable
                 result = num1 * num2;
                 break;
                 case "/":
+                if(num2 == 0)
+                {
+                    System.Console.WriteLine("error dividing by zero");
+                    return;
+                }
                 result = num1 / num2;
                 break;
                 default:
